@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(firecrawl:firecrawl-scrape)",
+      "Skill(firecrawl:firecrawl-scrape:*)",
+      "Bash(npx --version)",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command npm -ErrorAction SilentlyContinue)",
+      "PowerShell(node --version 2>&1)",
+      "PowerShell(npm --version 2>&1)",
+      "mcp__cbfeae4e-8960-4bc8-b952-693bda6908b4__firecrawl_scrape",
+      "Skill(firecrawl:firecrawl-interact)",
+      "Skill(firecrawl:firecrawl-interact:*)",
+      "mcp__cbfeae4e-8960-4bc8-b952-693bda6908b4__firecrawl_interact",
+      "mcp__cbfeae4e-8960-4bc8-b952-693bda6908b4__firecrawl_interact_stop",
+      "Bash(git init *)",
+      "Bash(mkdir -p docs/superpowers/specs)",
+      "Bash(git add *)",
+      "Bash(git -c user.email=\"adibasumaiyatasnim@gmail.com\" -c user.name=\"Vivekananda Das\" commit -m \"Add design spec for premium portfolio website\")",
+      "Bash(git -c user.email=\"adibasumaiyatasnim@gmail.com\" -c user.name=\"Vivekananda Das\" commit -m \"Add implementation plan for portfolio website\")",
+      "PowerShell(winget install --id OpenJS.NodeJS.LTS -e --accept-source-agreements --accept-package-agreements)"
+    ]
+  }
+}
