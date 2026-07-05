@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ScrollProvider } from "@/components/providers/ScrollProvider";
 import "./globals.css";
 
 const body = Inter({ subsets: ["latin"], variable: "--font-body-family" });
@@ -22,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${body.variable} ${heading.variable}`}>
       <body className="bg-background text-text-primary font-body antialiased">
-        {children}
+        <ScrollProvider>{children}</ScrollProvider>
       </body>
     </html>
   );
