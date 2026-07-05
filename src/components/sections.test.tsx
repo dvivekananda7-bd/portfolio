@@ -30,7 +30,7 @@ describe("remaining home sections", () => {
 
   it("Achievements renders every stat value and label", async () => {
     render(<Achievements />);
-    expect(await screen.findByText("600+", {}, { timeout: 5000, interval: 50 })).toBeInTheDocument();
+    expect(await screen.findByText("600+", {}, { timeout: 5000, interval: 20 })).toBeInTheDocument();
     expect(screen.getByText("Festival Selections")).toBeInTheDocument();
   });
 

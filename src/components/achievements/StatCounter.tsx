@@ -27,10 +27,11 @@ export function StatCounter({ value, label }: { value: string; label: string }) 
 
   useEffect(() => {
     if (!inView || Number.isNaN(numeric)) return;
-    const duration = 1200;
-    const start = performance.now();
-    function tick(now: number) {
-      const progress = Math.min((now - start) / duration, 1);
+    const totalFrames = 45;
+    let frame = 0;
+    function tick() {
+      frame += 1;
+      const progress = Math.min(frame / totalFrames, 1);
       setDisplay(Math.floor(progress * numeric));
       if (progress < 1) requestAnimationFrame(tick);
     }
