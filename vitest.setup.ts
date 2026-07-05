@@ -14,6 +14,29 @@ if (typeof window !== "undefined" && !window.ResizeObserver) {
   } as unknown as typeof ResizeObserver;
 }
 
+if (typeof window !== "undefined" && !window.IntersectionObserver) {
+  window.IntersectionObserver = class {
+    constructor(callback: IntersectionObserverCallback) {
+      this.callback = callback;
+    }
+    callback: IntersectionObserverCallback;
+    root = null;
+    rootMargin = "";
+    thresholds: ReadonlyArray<number> = [];
+    observe(target: Element) {
+      this.callback(
+        [{ isIntersecting: true, target } as IntersectionObserverEntry],
+        this as unknown as IntersectionObserver
+      );
+    }
+    unobserve() {}
+    disconnect() {}
+    takeRecords(): IntersectionObserverEntry[] {
+      return [];
+    }
+  } as unknown as typeof IntersectionObserver;
+}
+
 if (typeof window !== "undefined" && !window.matchMedia) {
   window.matchMedia = (query: string) => ({
     matches: false,
