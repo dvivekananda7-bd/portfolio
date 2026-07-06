@@ -7,9 +7,9 @@ describe("Home page", () => {
     render(<Page />);
     const headings = screen.getAllByRole("heading", { level: 2 }).map((h) => h.textContent);
     expect(headings).toEqual([
-      "Story-first, format-agnostic",
-      "Where the work happened",
+      "I'm a visual storyteller",
       "Campaigns and films, side by side",
+      "Where the work happened",
       "What I bring to a project",
       "How I can help",
       "Numbers behind the work",

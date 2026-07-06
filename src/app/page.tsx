@@ -15,9 +15,9 @@ export default function Page() {
     <>
       <Hero />
       <About />
+      <FeaturedWork />
       <Experience />
       <WorkedWithStrip />
-      <FeaturedWork />
       <Expertise />
       <Services />
       <Achievements />
