@@ -21,7 +21,8 @@ describe("worked-with, achievements, testimonials", () => {
     expect(labels).toContain("Countries");
     expect(labels).toContain("Students Reached");
     expect(labels).toContain("Festival Selections");
-    expect(labels).toContain("YouTube Subscribers");
+    expect(labels).toContain("Social Media Followers");
+    expect(labels).not.toContain("YouTube Subscribers");
   });
 
   it("has 3 testimonials attributed to the confirmed names, all flagged as placeholders", () => {

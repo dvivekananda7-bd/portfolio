@@ -10,6 +10,6 @@ export const achievements: Achievement[] = [
   { value: "100+", label: "Stories Produced" },
   { value: "50+", label: "Workshops" },
   { value: "3", label: "Festival Selections" },
-  { value: "3.6K+", label: "YouTube Subscribers" },
+  { value: "200K+", label: "Social Media Followers" },
   { value: "160K+", label: "Views on a Single Video" },
 ];
