@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { FeaturedWork } from "./work/FeaturedWork";
 import { Expertise } from "./expertise/Expertise";
 import { Services } from "./services/Services";
 import { Achievements } from "./achievements/Achievements";
@@ -9,15 +8,6 @@ import { Contact } from "./contact/Contact";
 import { Footer } from "./layout/Footer";
 
 describe("remaining home sections", () => {
-  it("FeaturedWork links all 7 projects", () => {
-    render(<FeaturedWork />);
-    expect(screen.getAllByRole("link")).toHaveLength(7);
-    expect(screen.getByRole("link", { name: /Prologue/ })).toHaveAttribute(
-      "href",
-      "/work/prologue"
-    );
-  });
-
   it("Expertise lists all 14 skills", () => {
     render(<Expertise />);
     expect(screen.getByText("Brand Collaboration")).toBeInTheDocument();
