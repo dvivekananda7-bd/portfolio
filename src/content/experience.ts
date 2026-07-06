@@ -1,8 +1,11 @@
+export type Sector = "Development" | "Legal" | "Corporate";
+
 export interface ExperienceEntry {
   org: string;
   role: string;
   dates: string;
   location: string;
+  sector: Sector;
   bullets: string[];
   achievement: string[];
 }
@@ -11,6 +14,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "UNDP Futurenation",
     role: "Volunteer Management Associate",
+    sector: "Development",
     dates: "Aug 2024 – Nov 2024",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -33,6 +37,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "TNY Legal Bangladesh Ltd",
     role: "Junior Lawyer / Admin",
+    sector: "Legal",
     dates: "Jul 2022 – Jul 2024",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -47,6 +52,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "Amit & Associates",
     role: "Junior Associate",
+    sector: "Legal",
     dates: "Jan 2022 – Jun 2022",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -60,6 +66,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "BILIA",
     role: "Research Assistant (Internship)",
+    sector: "Legal",
     dates: "Jun 2019 – Feb 2020",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -73,6 +80,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "NCSC (International Center for State Courts)",
     role: "Legal Aid Intern",
+    sector: "Legal",
     dates: "Feb 2018 – Jun 2019",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -86,6 +94,7 @@ export const experience: ExperienceEntry[] = [
   {
     org: "PRAN-RFL Group",
     role: "Assistant Director",
+    sector: "Corporate",
     dates: "2018",
     location: "Dhaka, Bangladesh",
     bullets: [
@@ -98,3 +107,15 @@ export const experience: ExperienceEntry[] = [
     ],
   },
 ];
+
+export interface ExperienceGroup {
+  sector: Sector;
+  entries: ExperienceEntry[];
+}
+
+const sectorOrder: Sector[] = ["Development", "Legal", "Corporate"];
+
+export const experienceGroups: ExperienceGroup[] = sectorOrder.map((sector) => ({
+  sector,
+  entries: experience.filter((entry) => entry.sector === sector),
+}));

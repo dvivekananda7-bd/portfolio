@@ -9,4 +9,11 @@ describe("Experience", () => {
     expect(orgs[0]).toContain("UNDP Futurenation");
     expect(orgs[orgs.length - 1]).toContain("PRAN-RFL Group");
   });
+
+  it("groups roles under Development, Legal, and Corporate sector labels", () => {
+    render(<Experience />);
+    expect(screen.getByText("Development")).toBeInTheDocument();
+    expect(screen.getByText("Legal")).toBeInTheDocument();
+    expect(screen.getByText("Corporate")).toBeInTheDocument();
+  });
 });
