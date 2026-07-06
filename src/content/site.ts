@@ -2,7 +2,7 @@ export const site = {
   name: "Vivekananda Das",
   title: "Communications Strategist & Filmmaker",
   tagline:
-    "Building campaigns, mentorship programs, and stories for international organizations — and independent films on the side.",
+    "I work on storytelling and communication for brands — from corporates to international organizations. I also create content on social media, and I'm an independent filmmaker.",
   email: "dvivekananda7@gmail.com",
   location: "Dhaka, Bangladesh",
   links: {
