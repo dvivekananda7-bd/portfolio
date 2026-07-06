@@ -1,21 +1,29 @@
-import { Play, ExternalLink } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import { Play, ExternalLink, Image as ImageIcon, FileVideo } from "lucide-react";
 import type { GalleryItem } from "@/content/categories";
-import { getYouTubeThumbnail } from "@/content/categories";
+import { getThumbnail } from "@/content/categories";
 
 const platformIcon = {
   youtube: Play,
   facebook: ExternalLink,
   instagram: ExternalLink,
+  "drive-image": ImageIcon,
+  "drive-video": FileVideo,
 };
 
 const platformLabel = {
   youtube: "YouTube",
   facebook: "Facebook",
   instagram: "Instagram",
+  "drive-image": "Photo",
+  "drive-video": "Video",
 };
 
 export function GalleryItemCard({ item }: { item: GalleryItem }) {
-  const thumbnail = item.platform === "youtube" ? getYouTubeThumbnail(item.url) : null;
+  const [thumbnailFailed, setThumbnailFailed] = useState(false);
+  const thumbnail = thumbnailFailed ? null : getThumbnail(item);
   const Icon = platformIcon[item.platform];
 
   return (
@@ -30,6 +38,8 @@ export function GalleryItemCard({ item }: { item: GalleryItem }) {
         <img
           src={thumbnail}
           alt={item.title}
+          loading="lazy"
+          onError={() => setThumbnailFailed(true)}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
       ) : (

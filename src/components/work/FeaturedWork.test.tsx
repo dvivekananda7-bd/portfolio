@@ -13,9 +13,17 @@ describe("FeaturedWork galleries", () => {
     expect(screen.getByRole("heading", { name: "Books and More" })).toBeInTheDocument();
   });
 
-  it("shows a coming-soon note for Futurenation instead of fabricated thumbnails", () => {
+  it("shows real Futurenation thumbnails linking to Google Drive", () => {
     render(<FeaturedWork />);
-    expect(screen.getByText(/coming soon/i)).toBeInTheDocument();
+    const driveLink = screen.getByRole("link", { name: /Futurenation Event Photo/i });
+    expect(driveLink).toHaveAttribute(
+      "href",
+      "https://drive.google.com/file/d/17bxBx8FVqnQN5hmF-CjoWN2t2-ij9gHu/view"
+    );
+    expect(driveLink.querySelector("img")).toHaveAttribute(
+      "src",
+      "https://drive.google.com/thumbnail?id=17bxBx8FVqnQN5hmF-CjoWN2t2-ij9gHu&sz=w800"
+    );
   });
 
   it("includes Jolpai Ronger Adhar as an item inside Prologue, not a separate section", () => {

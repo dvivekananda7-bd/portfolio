@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { categories, getYouTubeThumbnail } from "./categories";
+import { categories, getYouTubeThumbnail, getThumbnail, driveThumbnail, driveViewUrl } from "./categories";
 
 describe("categories content", () => {
   it("has exactly the 4 confirmed categories in order", () => {
@@ -11,10 +11,19 @@ describe("categories content", () => {
     ]);
   });
 
-  it("Futurenation has no fabricated items and is marked coming soon", () => {
+  it("Futurenation has real Google Drive photos and videos, no longer coming soon", () => {
     const futurenation = categories.find((c) => c.slug === "futurenation")!;
-    expect(futurenation.items).toEqual([]);
-    expect(futurenation.comingSoon).toBe(true);
+    expect(futurenation.comingSoon).toBeUndefined();
+    expect(futurenation.items.length).toBeGreaterThan(20);
+    expect(futurenation.items.every((i) => i.url.includes("drive.google.com"))).toBe(true);
+    expect(futurenation.items.some((i) => i.platform === "drive-video")).toBe(true);
+    expect(futurenation.items.some((i) => i.platform === "drive-image")).toBe(true);
+    expect(futurenation.items.every((i) => getThumbnail(i))).toBe(true);
+  });
+
+  it("drive helpers build correct thumbnail and view URLs", () => {
+    expect(driveThumbnail("abc123")).toBe("https://drive.google.com/thumbnail?id=abc123&sz=w800");
+    expect(driveViewUrl("abc123")).toBe("https://drive.google.com/file/d/abc123/view");
   });
 
   it("Prologue category includes both Prologue and Jolpai Ronger Adhar as items, not a separate section", () => {
