@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://vivekanandadas.com";
+export const dynamic = "force-static";
+
+const BASE_URL = "https://dvivekananda7-bd.github.io/portfolio";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [{ url: BASE_URL, lastModified: new Date() }];
