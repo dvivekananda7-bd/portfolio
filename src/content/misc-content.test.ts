@@ -28,7 +28,9 @@ describe("worked-with, achievements, testimonials", () => {
   it("has 3 testimonials attributed to the confirmed names, all flagged as placeholders", () => {
     expect(testimonials.length).toBe(3);
     const names = testimonials.map((t) => t.name);
-    expect(names).toEqual(["Nishita Sanaul", "Athai Das", "Jyotish Talukder"]);
+    expect(names).toEqual(["Jyotish Talukder", "Athai Das", "Nafiz Reza"]);
+    const jyotish = testimonials.find((t) => t.name === "Jyotish Talukder")!;
+    expect(jyotish.role).toBe("Supervisor, UNDP Futurenation");
     expect(testimonials.every((t) => t.isPlaceholder)).toBe(true);
   });
 });

@@ -12,8 +12,8 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "PLACEHOLDER — replace with real quote. Vivek brought a level of creativity and attention to detail to Futurenation's communications that raised the bar for the whole team, and he never missed a deadline even under real pressure.",
-    name: "Nishita Sanaul",
-    role: "Colleague, UNDP Futurenation",
+    name: "Jyotish Talukder",
+    role: "Supervisor, UNDP Futurenation",
     isPlaceholder: true,
   },
   {
@@ -26,8 +26,8 @@ export const testimonials: Testimonial[] = [
   {
     quote:
       "PLACEHOLDER — replace with real quote. Vivek is one of the most reliable creative people I've worked with — genuinely inventive, meticulous about the details, and calm under deadline pressure.",
-    name: "Jyotish Talukder",
-    role: "Former Supervisor, PRAN-RFL Productions",
+    name: "Nafiz Reza",
+    role: "Former Boss, PRAN-RFL Productions",
     isPlaceholder: true,
   },
 ];

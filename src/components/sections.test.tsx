@@ -26,8 +26,8 @@ describe("remaining home sections", () => {
 
   it("Testimonials renders all 3 attributed names", () => {
     render(<Testimonials />);
-    expect(screen.getByText("Nishita Sanaul")).toBeInTheDocument();
     expect(screen.getByText("Jyotish Talukder")).toBeInTheDocument();
+    expect(screen.getByText("Nafiz Reza")).toBeInTheDocument();
   });
 
   it("Contact links to the real Google Form", () => {
