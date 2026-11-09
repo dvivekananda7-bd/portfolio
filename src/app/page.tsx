@@ -5,7 +5,6 @@ import { ProjectSpotlight } from "@/components/spotlight/ProjectSpotlight";
 import { ClientPortfolio } from "@/components/work/ClientPortfolio";
 import { Achievements } from "@/components/achievements/Achievements";
 import { WorkedWithStrip } from "@/components/workedWith/WorkedWithStrip";
-import { Testimonials } from "@/components/testimonials/Testimonials";
 import { Contact } from "@/components/contact/Contact";
 import { Footer } from "@/components/layout/Footer";
 
@@ -20,7 +19,9 @@ export default function Page() {
         <ClientPortfolio />
         <Achievements />
         <WorkedWithStrip />
-        <Testimonials />
+        {/* Testimonials are pulled until the three named people confirm the
+            quotes. The component and content are intact — re-import it and
+            drop <Testimonials /> back here to restore the section. */}
         <Contact />
       </main>
       <Footer />

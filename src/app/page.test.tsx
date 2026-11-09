@@ -13,9 +13,17 @@ describe("Home page", () => {
       "A glimpse of what we do",
       "Our clients' portfolio",
       "Numbers behind the work",
-      "What collaborators say",
       "Let's build something",
     ]);
+  });
+
+  it("does not publish the testimonials while the quotes are unconfirmed", () => {
+    render(<Page />);
+    expect(
+      screen.queryByRole("heading", { name: /What collaborators say/i })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Jyotish Talukder/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Nafiz Reza/)).not.toBeInTheDocument();
   });
 
   it("no longer carries the personal bio, expertise or experience sections", () => {
