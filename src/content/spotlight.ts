@@ -1,5 +1,5 @@
 /**
- * Project Spotlight — the formats the studio produces.
+ * Project Spotlight — the content formats the studio produces.
  * Headers only, by request: the list itself is the message.
  */
 export const spotlightFormats: string[] = [
@@ -9,5 +9,4 @@ export const spotlightFormats: string[] = [
   "TVC / OVC",
   "Event Cover",
   "Cinematic Content",
-  "Editing",
 ];

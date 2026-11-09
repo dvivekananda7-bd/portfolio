@@ -22,7 +22,7 @@ describe("site content", () => {
     expect(services).toContain("Insight generation and analytics");
   });
 
-  it("lists the spotlight formats in order, with Editing seventh", () => {
+  it("lists the six spotlight formats", () => {
     expect(spotlightFormats).toEqual([
       "Infographic",
       "Talking Head",
@@ -30,9 +30,18 @@ describe("site content", () => {
       "TVC / OVC",
       "Event Cover",
       "Cinematic Content",
-      "Editing",
     ]);
-    expect(spotlightFormats[6]).toBe("Editing");
+  });
+
+  it("keeps Editing in services, not in the spotlight formats", () => {
+    expect(spotlightFormats).not.toContain("Editing");
+    expect(services[6]).toBe("Editing");
+  });
+
+  it("lists shooting and editing as separate services", () => {
+    expect(services).toContain("Cinematic shooting");
+    expect(services).toContain("Editing");
+    expect(services.some((s) => /shooting and editing/i.test(s))).toBe(false);
   });
 
   it("no longer offers formats the studio dropped", () => {

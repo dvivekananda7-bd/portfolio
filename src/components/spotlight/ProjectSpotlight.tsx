@@ -8,7 +8,7 @@ export function ProjectSpotlight() {
       <Container>
         <SectionHeading
           eyebrow="Project spotlight"
-          title="A glimpse of what we do"
+          title="Contents we are best at"
           accentFrom={3}
         />
 

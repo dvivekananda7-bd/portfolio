@@ -10,7 +10,7 @@ describe("Home page", () => {
       .map((h) => h.textContent?.replace(/\s+/g, " ").trim());
     expect(headings).toEqual([
       "What we do",
-      "A glimpse of what we do",
+      "Contents we are best at",
       "Our clients' portfolio",
       "Numbers behind the work",
       "Let's build something",
