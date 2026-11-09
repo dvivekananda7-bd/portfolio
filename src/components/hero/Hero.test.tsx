@@ -3,12 +3,24 @@ import { render, screen } from "@testing-library/react";
 import { Hero } from "./Hero";
 
 describe("Hero", () => {
-  it("renders the confirmed headline and both CTAs", () => {
+  it("names the person and the discipline in the h1 for screen readers and search", () => {
     render(<Hero />);
-    expect(screen.getByRole("heading", { name: /Vivekananda Das/ })).toBeInTheDocument();
-    expect(screen.getByText(/Communications Strategist & Filmmaker/)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "View Portfolio" })).toHaveAttribute("href", "#work");
-    expect(screen.getByRole("link", { name: "Let's Talk" })).toHaveAttribute("href", "#contact");
+    const heading = screen.getByRole("heading", { level: 1 });
+    expect(heading).toHaveAccessibleName(
+      "Vivekananda Das — Video Production & Brand Content Strategy"
+    );
+  });
+
+  it("renders both CTAs pointing at contact and work", () => {
+    render(<Hero />);
+    expect(screen.getByRole("link", { name: "Book a call" })).toHaveAttribute(
+      "href",
+      "#contact"
+    );
+    expect(screen.getByRole("link", { name: "See the work" })).toHaveAttribute(
+      "href",
+      "#work"
+    );
   });
 
   it("does not mention a law background", () => {

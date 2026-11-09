@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
-
-const REPO_NAME = "portfolio";
+import { basePath } from "./src/lib/basePath";
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: `/${REPO_NAME}`,
-  assetPrefix: `/${REPO_NAME}/`,
+  basePath,
+  assetPrefix: `${basePath}/`,
   trailingSlash: true,
   images: {
     unoptimized: true,

@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { site } from "./site";
-import { expertise } from "./expertise";
 import { services } from "./services";
+import { spotlightFormats } from "./spotlight";
 
 describe("site content", () => {
   it("has real contact info, not placeholders", () => {
@@ -11,17 +11,33 @@ describe("site content", () => {
     expect(site.links.instagram).toBe(
       "https://www.instagram.com/vivek_ananda_das/"
     );
+    expect(site.links.youtube).toBe("https://www.youtube.com/@vivekanup7");
     expect(site.links.contactForm).toBe("https://forms.gle/85t4kde6rDfahAPa9");
   });
 
-  it("has the exact confirmed expertise list", () => {
-    expect(expertise).toContain("Communications");
-    expect(expertise).toContain("Brand Collaboration");
-    expect(expertise.length).toBe(14);
+  it("merges services and capabilities into one list, titles only", () => {
+    expect(services.every((s) => typeof s === "string")).toBe(true);
+    expect(services).toContain("Influencer portfolio management");
+    expect(services).toContain("Brand positioning study");
+    expect(services).toContain("Insight generation and analytics");
   });
 
-  it("has 9 services from the brief", () => {
-    expect(services.length).toBe(9);
-    expect(services.map((s) => s.title)).toContain("Digital Storytelling");
+  it("lists the spotlight formats in order, with Editing seventh", () => {
+    expect(spotlightFormats).toEqual([
+      "Infographic",
+      "Talking Head",
+      "Documentary",
+      "TVC / OVC",
+      "Event Cover",
+      "Cinematic Content",
+      "Editing",
+    ]);
+    expect(spotlightFormats[6]).toBe("Editing");
+  });
+
+  it("no longer offers formats the studio dropped", () => {
+    expect(spotlightFormats).not.toContain("Real Estate");
+    expect(spotlightFormats).not.toContain("Games");
+    expect(spotlightFormats).not.toContain("VSL");
   });
 });

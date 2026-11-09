@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Two colours only: black and electric orange.
+   No grey tokens anywhere — secondary text is white at alpha,
+   and raised surfaces are black carrying an orange cast.
+   ============================================================ */
+
 :root {
-  --background: #0a0a0a;
-  --card: #141414;
-  --text-primary: #ffffff;
-  --text-secondary: #a8a8a8;
-  --accent: #ff6b35;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --black: #000000;
+  --surface: #120803; /* near-black, warmed toward orange — never neutral grey */
+  --surface-2: #1d0c04;
+
+  --orange: #ff5a00; /* electric orange — primary */
+  --orange-hot: #ff7a26; /* hover / small highlights */
+  --orange-deep: #c43f00; /* pressed, dense fills */
+
+  --white: #ffffff;
+  --text-dim: rgba(255, 255, 255, 0.64);
+  --text-faint: rgba(255, 255, 255, 0.4);
+
+  --line: rgba(255, 90, 0, 0.22);
+  --line-soft: rgba(255, 255, 255, 0.1);
+
+  --scrim: rgba(0, 0, 0, 0.46);
+
+  /* SF Pro on Apple devices; Inter is the cross-platform stand-in. */
+  --font-sf:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    var(--font-inter), "Segoe UI", system-ui, sans-serif;
+
+  /* Semantic aliases consumed by the components */
+  --background: var(--black);
+  --card: var(--surface);
+  --text-primary: var(--white);
+  --text-secondary: var(--text-dim);
+  --accent: var(--orange);
+  --border-color: var(--line);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
+  --color-text-faint: var(--text-faint);
   --color-accent: var(--accent);
+  --color-accent-hot: var(--orange-hot);
+  --color-accent-deep: var(--orange-deep);
   --color-border: var(--border-color);
-  --font-heading: var(--font-heading-family);
-  --font-body: var(--font-body-family);
+  --color-border-soft: var(--line-soft);
+  --color-black: var(--black);
+
+  --font-display: var(--font-sf);
+  --font-heading: var(--font-sf);
+  --font-body: var(--font-sf);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--text-primary);
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-sf);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Type -------------------------------------------------- */
+/* SF Pro Display behaviour: heavy weight, tight tracking, sentence case. */
+.display {
+  font-family: var(--font-sf);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.display-xl {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+/* In @layer components so Tailwind's own utilities (font-extrabold, text-xs,
+   tracking-*) can override it. Defined outside a layer, this plain class would
+   beat every layered utility and silently ignore them. */
+@layer components {
+  .label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+/* ---- The glow ---------------------------------------------- */
+/* One saturated source falling to pure black. Alpha stays low:
+   orange above ~0.5 muddies where green would stay clean.      */
+.glow-top {
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    rgba(255, 90, 0, 0.45),
+    var(--black) 58%
+  );
+}
+
+.glow-bottom {
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    rgba(255, 90, 0, 0.32),
+    var(--black) 60%
+  );
+}
+
+.glow-left {
+  background-image: radial-gradient(
+    circle at 8% 50%,
+    rgba(255, 90, 0, 0.3),
+    var(--black) 55%
+  );
+}
+
+/* Lifts a surface off the canvas without introducing grey. */
+.lit {
+  background-image: radial-gradient(
+    120% 140% at 50% 0%,
+    rgba(255, 122, 38, 0.1),
+    var(--surface) 70%
+  );
+}
+
+/* ---- Marquee ----------------------------------------------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  white-space: nowrap;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+/* ---- Reveal ------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

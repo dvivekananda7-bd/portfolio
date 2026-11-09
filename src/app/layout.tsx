@@ -1,42 +1,69 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import { ScrollProvider } from "@/components/providers/ScrollProvider";
+import { site } from "@/content/site";
 import "./globals.css";
 
-const body = Inter({ subsets: ["latin"], variable: "--font-body-family" });
-const heading = Space_Grotesk({
+/**
+ * Type: SF Pro.
+ *
+ * SF Pro cannot be self-hosted — Apple's licence restricts it to Apple
+ * platforms, so bundling the files on a public site is not permitted. The
+ * stack in globals.css resolves to the real SF Pro on macOS and iOS via
+ * `-apple-system`, and falls back to Inter everywhere else. Inter was drawn
+ * as an open counterpart to SF and is the closest legal match on Windows
+ * and Android.
+ */
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-heading-family",
+  variable: "--font-inter",
+  display: "swap",
 });
 
+const title = `${site.name} — ${site.title}`;
+const description =
+  "Video production, brand content strategy, influencer content management and AI brand content, from Dhaka, Bangladesh. 50+ national TVCs, award-nominated independent film, and UNDP campaign work across 101 countries.";
+
 export const metadata: Metadata = {
-  title: "Vivekananda Das — Communications Strategist & Filmmaker",
-  description:
-    "Portfolio of Vivekananda Das: communications strategist and filmmaker working across international campaigns, mentorship programs, and independent film.",
-  openGraph: {
-    title: "Vivekananda Das — Communications Strategist & Filmmaker",
-    description:
-      "Portfolio of Vivekananda Das: communications strategist and filmmaker working across international campaigns, mentorship programs, and independent film.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Vivekananda Das — Communications Strategist & Filmmaker",
-    description:
-      "Portfolio of Vivekananda Das: communications strategist and filmmaker working across international campaigns, mentorship programs, and independent film.",
-  },
+  title,
+  description,
+  keywords: [
+    "video production Dhaka",
+    "brand content strategy Bangladesh",
+    "influencer content management",
+    "AI brand content",
+    "TVC director Bangladesh",
+    "campaign production",
+    "brand storytelling",
+    "filmmaker Dhaka",
+  ],
+  authors: [{ name: site.name }],
+  openGraph: { title, description, type: "website" },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Vivekananda Das",
-  jobTitle: "Communications Strategist & Filmmaker",
-  email: "mailto:dvivekananda7@gmail.com",
+  name: site.name,
+  jobTitle: site.title,
+  email: `mailto:${site.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Dhaka",
+    addressCountry: "BD",
+  },
+  knowsAbout: [
+    "Video Production",
+    "Brand Content Strategy",
+    "Influencer Content Management",
+    "AI Brand Content",
+  ],
   sameAs: [
-    "https://www.facebook.com/vivek.anup.7",
-    "https://www.linkedin.com/in/vivekananda7",
-    "https://www.instagram.com/vivek_ananda_das/",
+    site.links.facebook,
+    site.links.linkedin,
+    site.links.instagram,
+    site.links.youtube,
   ],
 };
 
@@ -46,14 +73,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${body.variable} ${heading.variable}`}>
+    <html lang="en" className={inter.variable}>
       <head>
+        <meta name="theme-color" content="#000000" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className="bg-background text-text-primary font-body antialiased">
+      <body className="bg-black text-text-primary antialiased">
         <ScrollProvider>{children}</ScrollProvider>
       </body>
     </html>

@@ -1,21 +1,26 @@
-import { Container } from "@/components/ui/Container";
 import { workedWith } from "@/content/workedWith";
 
 export function WorkedWithStrip() {
   return (
-    <section className="border-y border-border bg-background py-12">
-      <Container>
-        <p className="mb-6 text-center text-sm uppercase tracking-[0.2em] text-text-secondary">
-          Where I&apos;ve Worked
-        </p>
-        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {workedWith.map((name) => (
-            <li key={name} className="font-heading text-lg text-text-secondary">
-              {name}
-            </li>
-          ))}
-        </ul>
-      </Container>
+    <section
+      aria-label="Clients and collaborators"
+      className="overflow-hidden border-y border-border py-7"
+    >
+      <div className="marquee-track [--marquee-duration:44s] gap-12">
+        {[0, 1].map((pass) =>
+          workedWith.map((name) => (
+            <span key={`${pass}-${name}`} className="flex items-center gap-12">
+              <span className="display text-[clamp(1.1rem,2vw,1.6rem)] text-text-secondary">
+                {name}
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-accent"
+              />
+            </span>
+          ))
+        )}
+      </div>
     </section>
   );
 }

@@ -39,8 +39,8 @@ export function StatCounter({ value, label }: { value: string; label: string }) 
   }, [inView, numeric]);
 
   return (
-    <div ref={ref} className="text-center">
-      <p className="font-heading text-4xl font-bold text-accent md:text-5xl">
+    <div ref={ref} className="bg-black p-7 md:p-9">
+      <p className="display text-[clamp(2.2rem,4.5vw,3.4rem)] text-accent">
         {Number.isNaN(numeric) ? value : `${display}${suffix}`}
       </p>
       <p className="mt-2 text-sm text-text-secondary">{label}</p>
