@@ -49,6 +49,13 @@ describe("WorkedWithStrip", () => {
     expect(screen.queryByAltText("BILIA")).not.toBeInTheDocument();
   });
 
+  it("shows University of Scholars as a logo", () => {
+    render(<WorkedWithStrip />);
+    const uos = screen.getAllByAltText("University of Scholars")[0];
+    expect(uos.getAttribute("src")).toBe("/portfolio/images/logos/uos.png");
+    expect(uos.className).toContain("h-7");
+  });
+
   it("duplicates the track so the marquee can loop seamlessly", () => {
     render(<WorkedWithStrip />);
     expect(screen.getAllByAltText("BRAC")).toHaveLength(2);

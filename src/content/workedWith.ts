@@ -25,7 +25,7 @@ export const clients: Client[] = [
   { name: "UNDP", logo: "/images/logos/undp.svg", tall: true },
   { name: "BBC", logo: "/images/logos/bbc.svg" },
   { name: "PRAN-RFL", logo: "/images/logos/pran-rfl.png" },
-  { name: "University of Scholars" },
+  { name: "University of Scholars", logo: "/images/logos/uos.png" },
   { name: "BILIA" },
   { name: "TNY Legal" },
   { name: "NCSC" },
